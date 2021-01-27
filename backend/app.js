@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
+const todoRoutes = require("./routes/todolist");
+
 const app = express();
 
 const port = 3010;
@@ -17,9 +19,13 @@ mongoose
     console.error(error);
   });
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
   res.send("Hello express");
 });
+
+app.use("/todo", todoRoutes);
 
 app.listen(port, () => {
   console.log(`server listen port... Port ${port}`);
