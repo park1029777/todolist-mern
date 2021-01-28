@@ -10,7 +10,7 @@ const port = 3010;
 mongoose
   .connect(
     "mongodb+srv://admin:p@ssw0rd@cluster0.axtok.mongodb.net/todolist?retryWrites=true&w=majority",
-    { useNewUrlParser: true, useUnifiedTopology: true }
+    { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }
   )
   .then(() => {
     console.log("connected mongoDb");
