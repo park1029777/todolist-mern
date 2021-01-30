@@ -1,5 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const morgan = require("morgan");
+const cors = require("cors");
 
 const todoRoutes = require("./routes/todolist");
 
@@ -19,7 +21,14 @@ mongoose
     console.error(error);
   });
 
+app.use(morgan("dev"));
 app.use(express.json());
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
 
 app.get("/", (req, res) => {
   res.send("Hello express");

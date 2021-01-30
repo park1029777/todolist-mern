@@ -1,11 +1,8 @@
-import Test from "./components/Test";
-import Counter from "./components/counter";
+import Todolist from "./components/Todolist";
 const App = () => {
   return (
     <>
-      <div>Hello, React</div>
-      <Test />
-      <Counter />
+      <Todolist />
     </>
   );
 };
