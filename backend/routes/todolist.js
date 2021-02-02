@@ -8,8 +8,8 @@ const router = express.Router();
 // Create todo  // 비동기
 router.post("/", async (req, res) => {
   try {
-    const newTodo = await Todo.create({ title: req.body.title });
-    req.body.title;
+    const { title } = req.body;
+    const newTodo = await Todo.create({ title });
     res.send(newTodo);
   } catch (error) {
     console.error(error);
