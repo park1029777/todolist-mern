@@ -15,7 +15,6 @@ const Todolist = () => {
 
   return (
     <>
-      <div>Todolist</div>
       <ul>
         {todos &&
           todos.map((v, i) => {
