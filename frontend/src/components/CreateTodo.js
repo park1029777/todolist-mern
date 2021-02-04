@@ -1,7 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
+import Todolist from "./Todolist";
 const CreateTodo = () => {
   const [title, setTitle] = useState("");
+  const [reload, setReload] = useState();
 
   const onChangeTitle = e => {
     setTitle(e.target.value);
@@ -15,6 +17,7 @@ const CreateTodo = () => {
         title,
       });
       setTitle("");
+      setReload(response);
     } catch (error) {
       console.error(error);
     }
@@ -26,6 +29,7 @@ const CreateTodo = () => {
         <input type="text" value={title} onChange={onChangeTitle} />
         <input type="submit" value="생성" />
       </form>
+      <Todolist reload={reload} />
     </>
   );
 };

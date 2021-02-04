@@ -32,7 +32,8 @@ router.get("/", async (req, res) => {
 router.get("/:title", async (req, res) => {
   try {
     // const todo = await Todo.findById(req.params.id);
-    const todo = await Todo.findOne({ title: req.params.title });
+    const { title } = req.params;
+    const todo = await Todo.findOne({ title });
     res.send(todo);
   } catch (error) {
     console.error(error);
@@ -43,8 +44,10 @@ router.get("/:title", async (req, res) => {
 // Update todo
 router.patch("/:id", async (req, res) => {
   try {
+    const { title } = req.body;
+
     await Todo.findByIdAndUpdate(req.params.id, {
-      title: req.body.title,
+      title,
     });
     const updateTodo = await Todo.findByIdAndUpdate(req.params.id);
     res.send(updateTodo);
@@ -57,9 +60,8 @@ router.patch("/:id", async (req, res) => {
 // DELETE todo
 router.delete("/:id", async (req, res) => {
   try {
-    await Todo.findByIdAndRemove(req.params.id);
-    const todos = await Todo.find();
-    res.send(todos);
+    const deleteTodo = await Todo.findByIdAndRemove(req.params.id);
+    res.send(deleteTodo);
   } catch (error) {
     console.error(error);
   }
