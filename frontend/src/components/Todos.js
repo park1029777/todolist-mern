@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const Todos = ({ data }) => {
+const Todos = ({ data, reloadList }) => {
   const [title, setTitle] = useState(data.title);
   const [updateToggle, setUpdateToggle] = useState(false);
 
@@ -32,7 +32,7 @@ const Todos = ({ data }) => {
       const response = await axios.delete(
         `http://localhost:3010/todo/${data._id}`
       );
-      console.log(response);
+      reloadList(response);
     } catch (error) {
       console.error(error);
     }

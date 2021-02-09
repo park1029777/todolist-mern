@@ -5,6 +5,12 @@ import Todos from "./Todos";
 // CORS 에러 왜 생기는거지?
 const Todolist = ({ reload }) => {
   const [todos, setTodos] = useState();
+  const [deleteReload, setDeleteReload] = useState();
+
+  const reloadList = res => {
+    setDeleteReload(res);
+    console.log(res);
+  };
 
   useEffect(async () => {
     try {
@@ -13,7 +19,7 @@ const Todolist = ({ reload }) => {
     } catch (error) {
       console.error(error);
     }
-  }, [reload]);
+  }, [reload, deleteReload]);
 
   // useEffect(() => {
   //   console.log(reload);
@@ -24,7 +30,7 @@ const Todolist = ({ reload }) => {
       <ul>
         {todos &&
           todos.map(v => {
-            return <Todos data={v} key={v._id} />;
+            return <Todos data={v} key={v._id} reloadList={reloadList} />;
           })}
       </ul>
     </>
